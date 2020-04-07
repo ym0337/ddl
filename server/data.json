@@ -1,0 +1,21 @@
+[
+    {
+        "userId": 1586000207887,
+        "name": "baozi",
+        "exist": true,
+        "list": [
+            {
+                "name": "工具人1",
+                "isAttack": "false",
+                "scene[0]": "hs-pt",
+                "scene[1]": "hs-nx",
+                "scene[2]": "hs-hz6",
+                "scene[3]": "hs-hz7",
+                "scene[4]": "hs-hz8",
+                "scene[5]": "hs-lh6",
+                "scene[6]": "hs-lh7",
+                "scene[7]": "hs-lh8"
+            }
+        ]
+    }
+]

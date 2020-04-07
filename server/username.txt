@@ -1,1 +1,1 @@
-{"name":"jjcc"}
+{"name":"包子","isAttack":"false","scene[0][0]":"hs","scene[0][1]":"hs-pt","scene[1][0]":"sw","scene[1][1]":"sw-hz7"}
