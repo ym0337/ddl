@@ -1,26 +1,8 @@
 <template>
   <div class="home">
-    <!-- <el-input />
-    <el-button @click="onLogin">登录</el-button> -->
-    <!-- <el-button @click="onDown">下载</el-button> -->
-    <!-- <el-container>
-      <el-header style="text-align: right; font-size: 12px">
-        <el-button type='primary' @click="openDlg('add')" size="small" plain>新增</el-button>
-        <el-dropdown>
-          <i class="el-icon-setting" style="margin-right: 15px"></i>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>查看</el-dropdown-item>
-            <el-dropdown-item>新增</el-dropdown-item>
-            <el-dropdown-item>删除</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-        <span>王小虎</span>
-      </el-header>
-    </el-container> -->
-
     <el-container style="height: auto; border: 1px solid #eee">
       <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-        <el-menu default-active="2" class="el-menu-vertical-demo" @select="select">
+        <el-menu default-active="hs" class="el-menu-vertical-demo" @select="select">
           <el-menu-item v-for="item in secens" :index="item.value.toString()" :key="item.value">
             <i class="el-icon-location"></i>
             <span slot="title">{{item.label}}</span>
@@ -30,63 +12,85 @@
 
       <el-container>
         <el-main>
-          <!-- <el-table :data="tableData" height="auto" border style="width: 100%">
-            <el-table-column prop="pt" label="pt"></el-table-column>
-            <el-table-column prop="nx" label="逆袭"></el-table-column>
-            <el-table-column prop="hz6" label="合作6"></el-table-column>
-            <el-table-column prop="hz7" label="合作7"></el-table-column>
-            <el-table-column prop="hz8" label="合作8"></el-table-column>
-            <el-table-column prop="lh6" label="联合6"></el-table-column>
-            <el-table-column prop="lh7" label="联合7"></el-table-column>
-            <el-table-column prop="lh8" label="联合8"></el-table-column>
-          </el-table> -->
           <el-row :gutter="5">
             <el-col :span="3">
               <div class="grid-content bg-purple">pt</div>
               <ul class="rolesStyle">
-                <li v-for="i in roles['pt']">{{ i.parentName }}</li>
+                <li v-for="i in roles['pt']" style="text-align: center;">
+                  <el-tooltip class="item" effect="dark" :content="'角色: ' + i.name" placement="bottom-start">
+                    <el-button>{{ i.parentName }}</el-button>
+                  </el-tooltip>
+                </li>
               </ul>
             </el-col>
             <el-col :span="3">
               <div class="grid-content bg-purple">逆袭</div>
               <ul class="rolesStyle">
-                <li v-for="i in roles['nx']">{{ i.parentName }}</li>
+                <li v-for="i in roles['nx']">
+                  <el-tooltip class="item" effect="dark" :content="'角色: ' + i.name" placement="bottom-start">
+                    <el-button>{{ i.parentName }}</el-button>
+                  </el-tooltip>
+                </li>
               </ul>
             </el-col>
             <el-col :span="3">
               <div class="grid-content bg-purple">合作6</div>
               <ul class="rolesStyle">
-                <li v-for="i in roles['hz6']">{{ i.parentName }}</li>
+                <li v-for="i in roles['hz6']">
+                  <el-tooltip class="item" effect="dark" :content="'角色: ' + i.name" placement="bottom-start">
+                    <el-button>{{ i.parentName }}</el-button>
+                  </el-tooltip>
+                </li>
               </ul>
             </el-col>
             <el-col :span="3">
               <div class="grid-content bg-purple">合作7</div>
               <ul class="rolesStyle">
-                <li v-for="i in roles['hz7']">{{ i.parentName }}</li>
+                <li v-for="i in roles['hz7']">
+                  <el-tooltip class="item" effect="dark" :content="'角色: ' + i.name" placement="bottom-start">
+                    <el-button>{{ i.parentName }}</el-button>
+                  </el-tooltip>
+                </li>
               </ul>
             </el-col>
             <el-col :span="3">
               <div class="grid-content bg-purple">合作8</div>
               <ul class="rolesStyle">
-                <li v-for="i in roles['hz8']">{{ i.parentName }}</li>
+                <li v-for="i in roles['hz8']">
+                  <el-tooltip class="item" effect="dark" :content="'角色: ' + i.name" placement="bottom-start">
+                    <el-button>{{ i.parentName }}</el-button>
+                  </el-tooltip>
+                </li>
               </ul>
             </el-col>
             <el-col :span="3">
               <div class="grid-content bg-purple">联合6</div>
               <ul class="rolesStyle">
-                <li v-for="i in roles['lh6']">{{ i.parentName }}</li>
+                <li v-for="i in roles['lh6']">
+                  <el-tooltip class="item" effect="dark" :content="'角色: ' + i.name" placement="bottom-start">
+                    <el-button>{{ i.parentName }}</el-button>
+                  </el-tooltip>
+                </li>
               </ul>
             </el-col>
             <el-col :span="3">
               <div class="grid-content bg-purple">联合7</div>
               <ul class="rolesStyle">
-                <li v-for="i in roles['lh7']">{{ i.parentName }}</li>
+                <li v-for="i in roles['lh7']">
+                  <el-tooltip class="item" effect="dark" :content="'角色: ' + i.name" placement="bottom-start">
+                    <el-button>{{ i.parentName }}</el-button>
+                  </el-tooltip>
+                </li>
               </ul>
             </el-col>
             <el-col :span="3">
               <div class="grid-content bg-purple">联合8</div>
               <ul class="rolesStyle">
-                <li v-for="i in roles['lh8']">{{ i.parentName }}</li>
+                <li v-for="i in roles['lh8']">
+                  <el-tooltip class="item" effect="dark" :content="'角色: ' + i.name" placement="bottom-start">
+                    <el-button>{{ i.parentName }}</el-button>
+                  </el-tooltip>
+                </li>
               </ul>
             </el-col>
           </el-row>
@@ -181,12 +185,10 @@
     },
     mounted() {
       this.$socket.emit("login", '客户端');
-      this.$socket.on("send", msg => console.log(msg));
+      // this.$socket.on("send", msg => console.log(msg));
+      this.getDdl({ scene: 'hs' })
     },
     methods: {
-      onLogin() {
-        login({ name: "jjcc" }).then(res => getMyList());
-      },
       select(key, keyPath) {
         console.log(key, keyPath);
         this.roleKey = key;

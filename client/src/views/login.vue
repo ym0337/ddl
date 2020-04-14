@@ -2,7 +2,7 @@
     <div class="loginStyle">
         <el-form ref="form" :model="form" label-width="80px">
             <el-form-item label="用户名">
-              <el-input v-model="form.name"></el-input>
+              <el-input v-model="form.name" @keyup.enter.native="signIn"></el-input>
             </el-form-item>
    
             <el-form-item>
@@ -19,20 +19,21 @@
       data() {
         return {
           form: {
-            name: 'baozi',
+            name: '',
           }
         }
       },
       created(){
-        console.log(123);
-        localStore.clear();
+        // console.log(123);
+        // localStore.clear();
+        this.form.name = localStore.get("custom-name") || ""
       },
       methods: {
           // 登录
         signIn() {
             if(!this.form.name)return this.$message.error("用户名不能为空");
             login(this.form).then(res =>{
-                // console.log(res)
+                console.log(res)
                 if(!res.data.isExist){
                     console.log(res.data.msg)
                     return this.$message.error(res.data.msg);
@@ -47,7 +48,7 @@
         signUp(){
             sign(this.form).then(res =>{
                 // console.log(res)
-                return this.$message.success(res.data.msg || "后端报错");
+                return this.$message.success(res.data.msg);
             })
         }
       }

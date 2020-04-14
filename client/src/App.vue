@@ -30,6 +30,9 @@
         userName:""
       }
     },
+    mounted() {
+      this.userName = localStore.get("custom-name") || ""
+    },
     watch:{
       $route(newVal){
         this.userName = localStore.get("custom-name") || ""

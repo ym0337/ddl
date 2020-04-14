@@ -2,7 +2,7 @@
   <div class="about">
     <h1>我的委托</h1>
     <el-button size="small" @click="addRole('add')">添加</el-button>
-    <el-table :data="tableData" style="width: 100%">
+    <el-table ref="ddlTable" :data="tableData" style="width: 100%" stripe border>
       <el-table-column label="角色" prop="name" width="120">
       </el-table-column>
       <el-table-column :label="item.label" v-for="item in secens" :key="item.value" :prop="item.value">
@@ -82,6 +82,8 @@
         getUserInfo().then(res => {
           // console.log(res.data)
           // let result = res.data
+          
+          if(!res.data)return console.log("无数据")
           res.data.list.forEach(v => {
             let list = v.scene.split(',')
 
@@ -102,6 +104,9 @@
               _temp[_item[1]] = _temp[_item[1]] + "," + _item[0]
             })
             this.tableData.push(_temp)
+            this.$nextTick(()=>{
+              this.$refs.ddlTable.doLayout();
+            })
           })
         })
       },
@@ -140,8 +145,8 @@
         }
       },
       closeDlg(val) {
-        this.dialogFormVisible = val;
-        this.getInfo();
+        this.dialogFormVisible = false;
+        val && this.getInfo()
       },
 
     },

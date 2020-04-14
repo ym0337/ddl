@@ -1,9 +1,40 @@
 import axios from 'axios';
 import Qs from 'qs';
+import { Loading } from 'element-ui';
 
 import {localStore} from '@/util/localStore.js'
 
-let baseUrl = '/api'
+// let baseUrl = '/api';
+let baseUrl = 'http://119.29.94.99:3013';
+
+let loading;
+
+// 添加请求拦截器
+axios.interceptors.request.use(function (config) {
+  // 在发送请求之前做些什么
+  loading = Loading.service({
+    lock: true,
+    text: 'Loading',
+    spinner: 'el-icon-loading',
+    background: 'rgba(0, 0, 0, 0.7)'
+  });
+  return config;
+}, function (error) {
+  // 对请求错误做些什么
+  return Promise.reject(error);
+});
+
+// 添加响应拦截器
+axios.interceptors.response.use(function (response) {
+  // 对响应数据做点什么
+  // console.log(response)
+  loading.close()
+  return response;
+}, function (error) {
+  // 对响应错误做点什么
+  return Promise.reject(error);
+});
+
 const postRequest = (url,params) => {
   let customId = localStore.get('custom-id') || "";
   return axios({
@@ -47,7 +78,7 @@ export const sign = params => postRequest('/sign',params)
 export const login = params => postRequest('/login',params)
 
 // 获取用户信息
-export const getUserInfo = _ => getRequest('userInfo')
+export const getUserInfo = _ => getRequest('/userInfo');
 
 // 获取当前工具人信息
 export const getGongjurenInfo = params => postRequest('/gongjurenInfo',params)

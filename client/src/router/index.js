@@ -19,6 +19,10 @@ const routes = [
     path: '/myself',
     name: 'Myself',
     component: () => import(/* webpackChunkName: "about" */ '../views/myself.vue')
+  },
+  {
+    path: '/',
+    redirect:'/login'
   }
 ]
 

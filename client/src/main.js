@@ -6,7 +6,9 @@ import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 
 import * as io from '@/socket/socket.io.js';
-Vue.prototype.$socket = io.connect('http://localhost:3010');
+// let socketUrl = 'http://localhost:3013';
+let socketUrl = 'http://119.29.94.99:3013';
+Vue.prototype.$socket = io.connect(socketUrl);
 
 // 引入委托名称对应关系表
 import distList from '../public/config/dist.js'

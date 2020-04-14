@@ -24,7 +24,7 @@
     data() {
       return {
         form: {
-          name: "工具人1",
+          name: "",
           isAttack: false,
           scene: [],
           parentId: "",
@@ -67,7 +67,7 @@
             value: "sx"
           }, {
             label: "大主教巢穴",
-            value: "tzj"
+            value: "dzj"
           }, {
             label: "代达罗斯巢穴",
             value: "ddls"
@@ -103,7 +103,7 @@
         ]
       };
     },
-    created() {
+    created() {      
       this.options = this.secens.map(item => {
         return {
           value: item.value,
@@ -116,7 +116,6 @@
           })
         }
       })
-
     },
     methods: {
       onSubmit(formName) {
@@ -135,8 +134,9 @@
               parentName: localStore.get('custom-name')
             }
             addItem(params).then(res => {
-              // console.log(res)
-              this.$emit('closeDlg', false)
+              // console.log(res.data);
+
+              this.$emit('closeDlg', true)
             })
           } else {
             console.log('error submit!!');
@@ -146,6 +146,7 @@
 
       },
       onAdd() {
+        this.$refs.form && this.$refs.form.resetFields();
         this.form = {
           name: "",
           isAttack: false,
@@ -155,6 +156,7 @@
         }
       },
       getUserInfo(name) {
+        this.$refs.form && this.$refs.form.resetFields();
         this.form = {
           name: "",
           isAttack: false,
@@ -163,7 +165,7 @@
           parentName: localStore.get('custom-name')
         }
         getGongjurenInfo({ name: name }).then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           let result = res.data;
           let _scenes1 = result.scene.split(',');
           let _scenes2 = _scenes1.map(v => {
